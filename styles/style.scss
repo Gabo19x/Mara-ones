@@ -1,0 +1,238 @@
+// Variables
+$tamañoTitulo: 30px;
+$tamañoSubtitulo: 20px;
+$parrafo: 16px;
+$curvaturaBorde: 10px;
+
+$primario: #d71303;
+$secundario: #df6513;
+$terciario: #d2d2d2;
+$blanco: white;
+$negro: black;
+
+$paddingHorizontal: 20px;
+
+// Globales
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: $tamañoTitulo;
+    color: $negro;
+}
+
+h2 {
+    font-size: $tamañoSubtitulo;
+    color: $primario;
+}
+
+p, a {
+    font-size: $parrafo;
+}
+
+a {
+    text-decoration: none;
+}
+
+span {
+    font-weight: 750;
+    color: $secundario;
+}
+
+.TituloBlanco, .SubtituloBlanco, .ParrafoBlanco {
+    color: $blanco;
+}
+
+@mixin DisplayFlex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@mixin ImagenBack($url, $color) {
+    background-color: $color;
+    background-image: url($url);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    z-index: -1; 
+}
+
+ul {
+    list-style-type: none;
+}
+// Header
+header {
+    @include ImagenBack("../assets/ImgHeader.svg", $negro);
+
+    width: 100%;
+    min-height: 500px;
+    @include DisplayFlex();
+
+    padding: 60px $paddingHorizontal;
+
+    h1 {
+        font-size: 50px;
+    }
+
+    h2 {
+        padding-top: 10px;
+        font-weight: lighter;
+    }
+}
+
+// Secciones
+section {
+    @include DisplayFlex();
+    padding: 60px $paddingHorizontal;
+
+    h1 {
+        padding-bottom: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    section {
+        min-height: 400px;
+    }
+}
+
+// .Contacto {
+
+// }
+
+.Beneficio {
+    background-color: $terciario;
+    @include ImagenBack("../assets/ImgMar.svg", $terciario);
+
+    div {
+        padding-bottom: 20px;
+        @include DisplayFlex();
+
+        h2 {
+            padding-bottom: 10px;
+        }
+    }
+
+    div:nth-of-type(2) {
+        p {
+            max-width: 500px;
+        }
+    }
+}
+
+.Nosotros {
+    /* Media query PC */
+    @media (min-width: 768px) {
+        p{
+            max-width: 700px;
+        }
+    }
+}
+
+.Recursos {
+    background-color: $terciario;
+    @include ImagenBack("../assets/ImgMar.svg", $terciario);
+
+    p{
+        margin-bottom: 20px;
+    }
+}
+
+.Carrusel {
+    width: 90%;
+    max-width: 120em;
+    
+    overflow: hidden;
+
+    .Carrusel_elemento {
+        width: 300%; // AQUI: se edita el tamaño sgun la cantidad de img
+
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        transition: all 0.5s ease;
+        transform: translateX();
+
+        .Carrusel_elemento_Imagen {
+            width: calc(100% / 3); // AQUI: se edita el tamaño de laimg segun la cantidad de img
+            height: 300px;
+            // border: 1px solid black;
+            border-radius: $curvaturaBorde;
+            padding: 30px;
+        }
+    }
+
+    .Carrusel_Botones {
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+
+        .Carrusel_Botones_Boton {
+            width: 1em;
+            height: 1em;
+            background-color: $blanco;
+            border-radius: 100%;
+            margin: 1em;
+        }
+
+        .BotonActivo {
+            width: 1.5em;
+            height: 1.5em;
+            background-color: $secundario;
+        }
+        
+    }
+}
+
+
+// Footer
+footer {
+    padding: 60px $paddingHorizontal;
+    margin-top: 60px;
+    background-color: $negro;
+
+    @include ImagenBack("../assets/ImgFooter.svg", $negro);
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+
+    .FechaActual {
+        margin-left: 4px;
+        height: inherit;
+    }
+
+    .BotonTarget {
+        @include DisplayFlex();
+
+        position: absolute;
+        left: 0;
+        padding: 5px;
+        margin-left: 20px;
+        color: $blanco;
+        font-size: 30px;
+
+        width: 40px;
+        height: 40px;
+
+        &:hover {
+            background-color: #d2d2d231;
+            border-radius: 10px;
+        }
+    }
+}
